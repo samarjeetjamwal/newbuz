@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Food Entrepreneur Academy | Himachal Pradesh</title>
+<style>
+:root {
+  --green:#174b3a;
+  --green2:#267052;
+  --gold:#e9b94d;
+  --cream:#f7f5ee;
+  --white:#fff;
+  --ink:#202a25;
+  --muted:#68766e;
+  --line:#dce5dd;
+  --red:#a63d32;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{
+  position:sticky;top:0;z-index:10;background:var(--green);
+  color:white;padding:13px 5%;display:flex;
+  align-items:center;justify-content:space-between;gap:12px;
+  box-shadow:0 4px 15px #0002
+}
+.brand{font-weight:850;letter-spacing:.5px}
+.brand small{display:block;font-size:11px;font-weight:400;opacity:.8}
+.header-actions{display:flex;gap:8px;flex-wrap:wrap}
+.hero{
+  padding:55px 6%;color:white;
+  background:linear-gradient(125deg,#12382c,#287251);
+}
+.hero .eyebrow{color:var(--gold);font-weight:800;letter-spacing:2px}
+.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.1;max-width:800px;margin:10px 0}
+.hero p{max-width:760px;color:#e0eee4;font-size:18px}
+.btn{
+  border:1px solid var(--line);background:white;color:var(--green);
+  border-radius:10px;padding:10px 15px;font-weight:750
+}
+.btn.primary{background:var(--green);color:white;border-color:var(--green)}
+.btn.gold{background:var(--gold);color:#2d281b;border-color:var(--gold)}
+.btn.dark{background:transparent;color:white;border-color:#ffffff70}
+.wrap{max-width:1250px;margin:auto;padding:0 20px}
+.notice{
+  margin:20px 0;background:#fff3d0;border:1px solid #ead59a;
+  padding:13px 16px;border-radius:12px
+}
+.layout{display:grid;grid-template-columns:255px 1fr;gap:25px;margin:25px auto 60px}
+.sidebar{
+  align-self:start;position:sticky;top:85px;background:white;
+  padding:16px;border:1px solid var(--line);border-radius:15px
+}
+.sidebar h3{font-size:14px;margin:0 0 12px}
+.nav{display:grid;gap:5px}
+.nav button{
+  text-align:left;border:0;border-radius:9px;background:white;
+  color:#4b5c51;padding:11px;font-weight:650
+}
+.nav button:hover,.nav button.active{background:var(--green);color:white}
+.progress{height:7px;background:#e8ede8;border-radius:9px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;width:0;background:var(--gold)}
+.page{display:none}
+.page.active{display:block}
+h2{font-size:clamp(26px,3.5vw,37px);line-height:1.2;margin:8px 0}
+h3{color:var(--green);margin-top:0}
+h4{margin:10px 0 5px}
+.muted{color:var(--muted)}
+.card{
+  background:white;border:1px solid var(--line);border-radius:15px;
+  padding:21px;margin-bottom:17px
+}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tile{background:#f0f5ef;border-radius:12px;padding:15px}
+.tile h4{color:var(--green)}
+.case{background:#fff8e6;border-left:4px solid var(--gold);padding:16px;margin:14px 0}
+.callout{background:#eaf4ed;border:1px solid #d1e3d4;padding:14px;border-radius:10px}
+.warning{background:#fff0eb;border-color:#f0d0c5}
+.task{display:flex;align-items:flex-start;gap:10px;padding:9px;background:#f6f8f5;margin:7px 0;border-radius:8px}
+.task input{margin-top:6px;accent-color:var(--green)}
+.task label{flex:1}
+table{width:100%;border-collapse:collapse;min-width:530px}
+th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#edf4ed;color:var(--green)}
+.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:10px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.field label{font-weight:700;font-size:13px}
+.field input,.field select,.field textarea{
+  width:100%;border:1px solid #cbd7cc;border-radius:9px;
+  padding:10px;background:white;color:var(--ink)
+}
+.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.business{
+  border:1px solid var(--line);border-radius:12px;background:white;padding:15px
+}
+.business h4{color:var(--green);margin-top:0}
+.business p{font-size:14px;margin:5px 0}
+.business .meta{color:#81601c;font-size:12px;font-weight:800}
+.result{background:var(--green);color:white;padding:18px;border-radius:12px;margin-top:12px}
+.result strong{font-size:25px;display:block}
+.daynav{display:flex;justify-content:space-between;gap:10px;margin:22px 0}
+.daynav button{max-width:49%}
+footer{background:#12362a;color:#dce9df;padding:25px 5%;font-size:13px}
+a{color:var(--green2)}
+.small{font-size:12px;color:var(--muted)}
+@media(max-width:850px){
+ .layout{grid-template-columns:1fr}
+ .sidebar{position:static}
+ .nav{display:flex;overflow-x:auto}
+ .nav button{white-space:nowrap}
+ .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:550px){
+ header{padding:10px 4%;flex-wrap:wrap}
+ .hero{padding:35px 5%}
+ .wrap{padding:0 12px}
+ .grid2,.grid3,.case-grid{grid-template-columns:1fr}
+ .card{padding:15px}
+ .header-actions .print{display:none}
+}
+@media print{
+ header,.sidebar,.header-actions,.daynav{display:none!important}
+ .layout{display:block}
+ .page{display:block!important}
+ body{background:white}
+ .card{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    FOOD ENTREPRENEUR ACADEMY
+    <small>Himachal Pradesh • Practical 5-Day Programme</small>
+  </div>
+  <div class="header-actions">
+    <button class="btn dark" onclick="backPage()">← Back</button>
+    <button class="btn print" onclick="window.print()">Print / PDF</button>
+    <button class="btn gold" onclick="showPage('planner')">My Business Plan</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">LEARN • TEST • CALCULATE • LAUNCH</div>
+  <h1>Your journey from aspiring entrepreneur to business owner.</h1>
+  <p>A practical course on the Indian food industry, Himachal-specific opportunities,
+  preservation, packaging, FSSAI, market research, financial planning, bank finance
+  and government support.</p>
+  <p><strong>Study commitment:</strong> 3–5 hours daily for five days, followed by
+  a 90-day business validation plan.</p>
+  <button class="btn gold" onclick="showPage('day1')">Start Day 1 →</button>
+  <button class="btn dark" onclick="showPage('opportunities')">Explore 32 Ideas</button>
+</section>
+
+<div class="wrap">
+  <div class="notice">
+    <strong>Before you invest:</strong> All example figures and cases in this course
+    are illustrative, not guaranteed market results. Verify food safety, licensing,
+    quotations, scheme eligibility and current application windows through official
+    sources. Do not depend on an unapproved subsidy to make your business viable.
+  </div>
+</div>
+
+<div class="wrap layout">
+<aside class="sidebar">
+  <h3>YOUR STUDY ROADMAP</h3>
+  <div class="progress"><div id="progressBar"></div></div>
+  <div class="small" id="progressText">0% complete</div>
+  <nav class="nav">
+    <button class="active" data-page="overview" onclick="showPage('overview')">⌂ Course Overview</button>
+    <button data-page="day1" onclick="showPage('day1')">01 · Industry & Markets</button>
+    <button data-page="day2" onclick="showPage('day2')">02 · Product & Safety</button>
+    <button data-page="opportunities" onclick="showPage('opportunities')">03 · Business Ideas</button>
+    <button data-page="day4" onclick="showPage('day4')">04 · Finance & Funding</button>
+    <button data-page="day5" onclick="showPage('day5')">05 · Research & Selection</button>
+    <button data-page="planner" onclick="showPage('planner')">✎ My Business Planner</button>
+    <button data-page="resources" onclick="showPage('resources')">↗ Official Resources</button>
+  </nav>
+  <div class="callout" style="margin-top:15px">
+    <strong>Golden rule</strong>
+    <p class="small">Prove that customers will pay before investing heavily in machinery.</p>
+  </div>
+</aside>
+
+<main>
+
+<!-- OVERVIEW -->
+<section class="page active" id="overview">
+  <h2>Welcome to your entrepreneurship programme</h2>
+  <p class="muted">This is a working course, not just reading material. Complete the exercises
+  and use the planner to turn learning into decisions.</p>
+
+  <div class="grid3">
+    <div class="tile"><h4>🔎 Discover</h4><p>Find a real customer problem and market gap.</p></div>
+    <div class="tile"><h4>🧪 Validate</h4><p>Test a product, buyer interest and price.</p></div>
+    <div class="tile"><h4>📊 Prove</h4><p>Calculate margin, cash requirements and risk.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>Your five-day course</h3>
+    <ol>
+      <li><strong>Day 1:</strong> Indian food industry, trends, customers and markets.</li>
+      <li><strong>Day 2:</strong> Preservation, packaging, FSSAI, pricing and marketing.</li>
+      <li><strong>Day 3:</strong> Explore 32 food business opportunities in Himachal.</li>
+      <li><strong>Day 4:</strong> DPR, bank presentations, project finance and schemes.</li>
+      <li><strong>Day 5:</strong> Market surveys, SWOT, idea scoring and a 90-day launch plan.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Entrepreneur self-assessment</h3>
+    <p>Tick each item when you are ready to proceed.</p>
+    <div class="task"><input type="checkbox" class="done"><label>I know how much capital I can risk without endangering household needs.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I am prepared to interview potential customers rather than rely on assumptions.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I will learn the food-safety requirements before selling products.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I will consider a small pilot before committing to a large investment.</label></div>
+  </div>
+
+  <div class="daynav"><span></span><button class="btn primary" onclick="showPage('day1')">Start Day 1 →</button></div>
+</section>
+
+<!-- DAY 1 -->
+<section class="page" id="day1">
+  <h2>Day 1 — Indian food industry and market opportunities</h2>
+  <p class="muted">Goal: understand where value is created and identify the customers you might serve.</p>
+
+  <div class="card">
+    <h3>Lesson 1: Understand the food value chain</h3>
+    <div class="grid2">
+      <div class="tile"><h4>1. Sourcing</h4><p>Farmers, FPOs, wholesalers, cooperatives and permitted local suppliers.</p></div>
+      <div class="tile"><h4>2. Processing</h4><p>Sorting, grading, drying, milling, cooking, freezing and bottling.</p></div>
+      <div class="tile"><h4>3. Quality and storage</h4><p>Hygiene, testing, traceability, suitable packaging and storage controls.</p></div>
+      <div class="tile"><h4>4. Distribution</h4><p>Retailers, hotels, restaurants, distributors, institutions and online buyers.</p></div>
+    </div>
+    <p><strong>Think commercially:</strong> a business need not manufacture a product.
+    Aggregation, contract manufacturing, food-service supply, packaging coordination
+    and distribution can also be business models.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 2: Trends worth investigating</h3>
+    <div class="table-scroll"><table>
+      <tr><th>Trend</th><th>Potential opportunity</th><th>What must be proven?</th></tr>
+      <tr><td>Convenience</td><td>Ready-to-cook mixes, snack packs</td><td>Will customers pay for the convenience?</td></tr>
+      <tr><td>Local identity</td><td>Regional foods, fruit products, grain mixes</td><td>Can quality and sourcing remain consistent?</td></tr>
+      <tr><td>Food-waste reduction</td><td>Grading, drying, processing surplus produce</td><td>Are yield, process cost and demand economical?</td></tr>
+      <tr><td>Tourism and gifting</td><td>Travel-friendly snacks and food hampers</td><td>Will sales continue outside peak season?</td></tr>
+      <tr><td>Institutional supply</td><td>Ingredients and packaged foods for hotels</td><td>Can you meet specifications and credit terms?</td></tr>
+      <tr><td>Online sales</td><td>Direct-to-consumer regional food brands</td><td>Does margin survive shipping and platform fees?</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 3: Select a customer first</h3>
+    <div class="grid2">
+      <div class="tile"><h4>Tourists</h4><p>Portability, attractive presentation, local identity and gifting.</p></div>
+      <div class="tile"><h4>Households</h4><p>Taste, trust, price, convenience and repeat availability.</p></div>
+      <div class="tile"><h4>Hotels and cafés</h4><p>Consistent quality, reliable delivery and bulk pricing.</p></div>
+      <div class="tile"><h4>Retailers</h4><p>Product movement, margin, shelf life and replenishment.</p></div>
+    </div>
+  </div>
+
+  <div class="case">
+    <strong>LIVE-STYLE CASE 1: The apple surplus</strong>
+    <p>A founder has access to apples in Himachal and wants to purchase a large juice-processing
+    machine immediately.</p>
+    <p><strong>What should the founder do first?</strong></p>
+    <ol>
+      <li>Record available volume, variety, quality, season and supplier prices.</li>
+      <li>Ask hotels, shops and beverage buyers what they currently purchase.</li>
+      <li>Compare grading/packing, outsourced drying, pulp, juice and fresh sales.</li>
+      <li>Calculate yield, packaging, labour, testing, transport and unsold stock.</li>
+      <li>Test demand through a lawful, food-safe pilot before purchasing machinery.</li>
+    </ol>
+    <p><em>Lesson:</em> abundant raw material does not automatically mean a profitable business.</p>
+  </div>
+
+  <div class="card">
+    <h3>Day 1 fieldwork</h3>
+    <div class="task"><input type="checkbox" class="done"><label>List three locally available raw materials and their seasonal availability.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Identify three customer groups and one problem for each.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Contact five shops, hotels, cafés or potential buyers.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Record five competing products, pack sizes and selling prices.</label></div>
+    <div class="field"><label>My customer and problem statement</label><textarea rows="3" placeholder="My customer is... They need... because..."></textarea></div>
+  </div>
+
+  <div class="card">
+    <h3>Knowledge check</h3>
+    <p>Which is the strongest early sign that an idea may work?</p>
+    <label><input type="radio" name="q1" value="a"> An expensive logo</label><br>
+    <label><input type="radio" name="q1" value="b"> Real buyer interest and workable unit economics</label><br>
+    <label><input type="radio" name="q1" value="c"> A machine supplier promising high profits</label><br><br>
+    <button class="btn" onclick="quiz('q1','b','f1')">Check answer</button><p id="f1"></p>
+  </div>
+  <div class="daynav"><button class="btn" onclick="backPage()">← Back</button><button class="btn primary" onclick="showPage('day2')">Day 2 →</button></div>
+</section>
+
+<!-- DAY 2 -->
+<section class="page" id="day2">
+  <h2>Day 2 — Preservation, packaging, FSSAI and sales</h2>
+  <p class="muted">Goal: understand how to develop a product that is safe, consistent, correctly labelled and commercially viable.</p>
+
+  <div class="card">
+    <h3>Lesson 1: Food preservation methods</h3>
+    <div class="table-scroll"><table>
+      <tr><th>Method</th><th>Possible products</th><th>Critical considerations</th></tr>
+      <tr><td>Drying/dehydration</td><td>Fruit, mushrooms, herbs</td><td>Moisture, water activity, uniform drying and packaging barrier.</td></tr>
+      <tr><td>Refrigeration/freezing</td><td>Perishable foods, frozen meals</td><td>Cold chain, temperature monitoring and backup power.</td></tr>
+      <tr><td>Pasteurisation/hot filling</td><td>Some juices, sauces, preserves</td><td>Validated time-temperature process, acidity and suitable containers.</td></tr>
+      <tr><td>Pickling/fermentation</td><td>Pickles, fermented products</td><td>Recipe control, acidity, sanitation and process validation.</td></tr>
+      <tr><td>Milling/roasting</td><td>Flours, grain mixes, snacks</td><td>Raw material quality, moisture, allergens and rancidity.</td></tr>
+      <tr><td>Vacuum packaging</td><td>Selected products under controlled conditions</td><td>Packaging alone does not make unsafe food safe.</td></tr>
+    </table></div>
+    <div class="callout warning"><strong>Never guess shelf life.</strong> Use a qualified food technologist or competent laboratory and an appropriate validated process. Incorrect processing can cause serious food-safety hazards.</div>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 2: Packaging and labelling</h3>
+    <p>Packaging must protect the product during storage and transport. Consider moisture, oxygen, light, breakage, sealing, food-contact compliance and total pack cost.</p>
+    <div class="task"><input type="checkbox" class="done"><label>Correct product name and ingredient declaration.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Allergen, nutrition and dietary declarations where required.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Net quantity, batch/lot identification and applicable date marking.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Applicable FSSAI number, logo and food-business details.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>MRP and Legal Metrology declarations where applicable.</label></div>
+    <p class="small">This is a preparation checklist, not a complete legal label template. Requirements depend on product and business activity.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 3: FSSAI and basic compliance</h3>
+    <ol>
+      <li>Identify the activity: manufacturing, repacking, storage, transport, retail or food service.</li>
+      <li>Check current registration/licensing eligibility through the official FoSCoS portal.</li>
+      <li>Prepare hygienic premises, potable water, cleaning, pest control and staff practices.</li>
+      <li>Maintain supplier, batch, traceability and complaint records appropriate to the business.</li>
+      <li>Check other requirements such as Udyam, GST, local trade permissions, Legal Metrology, fire and environmental approvals where applicable.</li>
+    </ol>
+    <p>Do not assume one registration covers every activity. Confirm your exact model before commercial operations.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 4: Calculate the true cost of a product</h3>
+    <p>Include ingredients, yield loss, packaging, labour, electricity/fuel, testing, freight, commissions, returns, retailer margins and marketing.</p>
+    <div class="case">
+      <strong>Practice example: one snack pack</strong>
+      <p>Net revenue received by the business: ₹100. Variable cost: ₹62. Contribution: ₹38.</p>
+      <p>Monthly fixed costs: ₹38,000. Simplified break-even = ₹38,000 ÷ ₹38 = <strong>1,000 packs per month</strong>.</p>
+      <p>These figures are illustrative, not a market quotation.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 5: Sales and marketing</h3>
+    <div class="grid2">
+      <div class="tile"><h4>Local B2B</h4><p>Buyer visits, samples, price lists, specifications, minimum order and payment terms.</p></div>
+      <div class="tile"><h4>Retail</h4><p>Retailer margin, attractive packaging, product movement and regular replenishment.</p></div>
+      <div class="tile"><h4>Tourism</h4><p>Travel-friendly packs, gift boxes and hotel partnerships.</p></div>
+      <div class="tile"><h4>Online</h4><p>Product photos, accurate descriptions, safe shipping and contribution after delivery cost.</p></div>
+    </div>
+    <p><strong>Track weekly:</strong> enquiries, samples, paid orders, repeat orders, contribution, complaints and overdue payments.</p>
+  </div>
+
+  <div class="case">
+    <strong>LIVE-STYLE CASE 2: Product complaint</strong>
+    <p>A retailer reports swollen packs and unusual odour. Stop dispatching the affected lot, isolate stock, preserve batch records, investigate the cause with qualified support and follow applicable recall/reporting obligations. Never conceal a complaint or alter a date label.</p>
+  </div>
+
+  <div class="card">
+    <h3>Day 2 practical work</h3>
+    <div class="task"><input type="checkbox" class="done"><label>Map one product's process from raw material receipt to dispatch.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>List five food-safety risks and proposed controls.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Obtain two packaging quotations.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Check your product's licensing category using official guidance.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Draft the unit cost and selling price.</label></div>
+  </div>
+
+  <div class="card">
+    <h3>Knowledge check</h3>
+    <p>Does vacuum packaging alone guarantee that food is safe?</p>
+    <label><input type="radio" name="q2" value="a"> Yes</label><br>
+    <label><input type="radio" name="q2" value="b"> No; the product needs appropriate validated safety and storage controls</label><br><br>
+    <button class="btn" onclick="quiz('q2','b','f2')">Check answer</button><p id="f2"></p>
+  </div>
+  <div class="daynav"><button class="btn" onclick="showPage('day1')">← Day 1</button><button class="btn primary" onclick="showPage('opportunities')">Day 3 →</button></div>
+</section>
+
+<!-- DAY 3 -->
+<section class="page" id="opportunities">
+  <h2>Day 3 — Explore 32 food business opportunities</h2>
+  <p class="muted">Filter the catalogue and shortlist three ideas. Investment categories are broad planning indicators, not quotations; land and working capital can change the total substantially.</p>
+
+  <div class="field">
+    <label>Search business ideas</label>
+    <input id="searchBusiness" oninput="filterBusiness()" placeholder="Search apple, dairy, snacks, tourism...">
+  </div>
+  <div class="field">
+    <label>Category</label>
+    <select id="categoryBusiness" onchange="filterBusiness()">
+      <option value="all">All categories</option>
+      <option value="Fruit & vegetables">Fruit & vegetables</option>
+      <option value="Packaged foods">Packaged foods</option>
+      <option value="Farm & ingredients">Farm & ingredients</option>
+      <option value="Dairy & beverages">Dairy & beverages</option>
+      <option value="Services & infrastructure">Services & infrastructure</option>
+      <option value="Tourism & distribution">Tourism & distribution</option>
+    </select>
+  </div>
+
+  <div class="business-list case-grid" id="businessList"></div>
+
+  <div class="card">
+    <h3>Shortlist your three strongest options</h3>
+    <p>Select ideas from the catalogue above, then compare them using the Day 5 scorecard.</p>
+    <div id="shortlist">No ideas selected yet.</div>
+    <button class="btn primary" onclick="showPage('day5')">Evaluate my ideas →</button>
+  </div>
+
+  <div class="case">
+    <strong>LIVE-STYLE CASE 3: Three possible business models</strong>
+    <p><strong>Founder A:</strong> Limited capital but strong retailer contacts. Consider a small branded range using a suitable licensed contract manufacturer.</p>
+    <p><strong>Founder B:</strong> Access to fruit and technical support. Compare grading/packing with outsourced processing.</p>
+    <p><strong>Founder C:</strong> Tourism and hospitality contacts. Test local gift packs and snack boxes while researching off-season sales.</p>
+    <p>The right choice depends on customer proof, skills, investment capacity and actual costs—not which idea sounds most exciting.</p>
+  </div>
+  <div class="daynav"><button class="btn" onclick="showPage('day2')">← Day 2</button><button class="btn primary" onclick="showPage('day4')">Day 4 →</button></div>
+</section>
+
+<!-- DAY 4 -->
+<section class="page" id="day4">
+  <h2>Day 4 — Project reports, banks, investors and government schemes</h2>
+  <p class="muted">Goal: prepare a credible business proposal and understand funding requirements.</p>
+
+  <div class="card">
+    <h3>Lesson 1: What a Detailed Project Report should contain</h3>
+    <ol>
+      <li><strong>Executive summary:</strong> Product, customer, location, project cost and funding request.</li>
+      <li><strong>Promoter profile:</strong> Skills, relevant experience, ownership and team.</li>
+      <li><strong>Market research:</strong> Buyer interviews, competitor prices, demand evidence and sales channels.</li>
+      <li><strong>Technical plan:</strong> Process, capacity, premises, machinery, utilities and quality controls.</li>
+      <li><strong>Project cost:</strong> Equipment, installation, fit-out, pre-operative costs, contingency and working capital.</li>
+      <li><strong>Means of finance:</strong> Promoter contribution, proposed loan and any eligible support.</li>
+      <li><strong>Financial forecasts:</strong> Sales, expenses, cash flow, profit and loss, repayment and break-even.</li>
+      <li><strong>Risk and execution:</strong> Supply, seasonality, food safety, credit, insurance and milestones.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 2: Interactive business calculator</h3>
+    <p>Replace the sample numbers with your own estimates.</p>
+    <div class="grid2">
+      <div class="field"><label>Total project cost (₹)</label><input id="projectCost" type="number" value="1200000"></div>
+      <div class="field"><label>Your contribution (₹)</label><input id="ownContribution" type="number" value="300000"></div>
+      <div class="field"><label>Units sold per month</label><input id="unitsSold" type="number" value="1500"></div>
+      <div class="field"><label>Net sales per unit (₹)</label><input id="unitPrice" type="number" value="120"></div>
+      <div class="field"><label>Variable cost per unit (₹)</label><input id="unitCost" type="number" value="72"></div>
+      <div class="field"><label>Monthly fixed costs (₹)</label><input id="fixedCost" type="number" value="45000"></div>
+    </div>
+    <button class="btn primary" onclick="calculate()">Calculate my business</button>
+    <div class="result" id="financeResult">Enter your assumptions and calculate.</div>
+    <p class="small">Simplified estimate only. Taxes, interest, depreciation, stock changes, delayed payments and other costs are excluded unless built into your assumptions. Profit does not automatically mean cash is available.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 3: Working capital and cash flow</h3>
+    <p>You may pay for ingredients, packaging and labour before customers pay your invoices. Estimate inventory days, customer credit days, supplier terms and seasonal lows.</p>
+    <div class="case">
+      <strong>Example:</strong> You buy ingredients today, hold stock for 20 days and give a retailer 30 days to pay. Cash may remain tied up for roughly 50 days after purchase. Even a profitable invoice can create a cash shortage.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 4: Presenting to a banker or investor</h3>
+    <ol>
+      <li>Explain the customer problem in one sentence.</li>
+      <li>Show customer interviews, trial sales or genuine buyer interest.</li>
+      <li>Explain supply, production, quality control and distribution.</li>
+      <li>Show project costs, unit economics, break-even and cash cycle.</li>
+      <li>Explain risks and what happens if sales are below expectations.</li>
+      <li>State the exact funding requirement and how every rupee will be used.</li>
+    </ol>
+    <p><strong>Prepare for questions:</strong> Why will customers choose you? What if input costs rise 20%? What if sales are only 60% of forecast? Who buys in the off-season? How will the loan be repaid?</p>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 5: Government support — official starting points</h3>
+    <div class="table-scroll"><table>
+      <tr><th>Programme / organisation</th><th>What to verify</th><th>Official link</th></tr>
+      <tr><td>PM Formalisation of Micro Food Processing Enterprises (PMFME)</td><td>Current application window, eligible activities, applicant conditions, ODOP rules and assistance requirements.</td><td><a href="https://pmfme.mofpi.gov.in/" target="_blank" rel="noopener">PMFME</a></td></tr>
+      <tr><td>Ministry of Food Processing Industries</td><td>Current scheme guidelines, application calls and project eligibility.</td><td><a href="https://mofpi.gov.in/" target="_blank" rel="noopener">MoFPI</a></td></tr>
+      <tr><td>Udyam Registration</td><td>Official MSME registration and current classification.</td><td><a href="https://udyamregistration.gov.in/" target="_blank" rel="noopener">Udyam</a></td></tr>
+      <tr><td>Startup India</td><td>Recognition criteria, incubators and current programmes.</td><td><a href="https://www.startupindia.gov.in/" target="_blank" rel="noopener">Startup India</a></td></tr>
+      <tr><td>NABARD</td><td>Relevant rural/agri-finance information and current programmes.</td><td><a href="https://www.nabard.org/" target="_blank" rel="noopener">NABARD</a></td></tr>
+      <tr><td>Himachal Pradesh Government / Invest HP</td><td>Current state policies, incentives and district-level facilitation.</td><td><a href="https://himachal.nic.in/" target="_blank" rel="noopener">HP Government</a> · <a href="https://emerginghimachal.hp.gov.in/" target="_blank" rel="noopener">Invest HP</a></td></tr>
+      <tr><td>CGTMSE</td><td>Whether a lender and borrower qualify for a credit guarantee route.</td><td><a href="https://www.cgtmse.in/" target="_blank" rel="noopener">CGTMSE</a></td></tr>
+    </table></div>
+    <div class="callout warning">
+      <strong>Important:</strong> A credit guarantee is not a grant, and a scheme is not a loan sanction. Confirm current rules with the District Industries Centre, relevant scheme office and bank. Ask whether purchases made before approval can affect eligibility. Never assume subsidies can be combined.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Day 4 preparation checklist</h3>
+    <div class="task"><input type="checkbox" class="done"><label>Obtain two equipment or contract-processing quotations.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Prepare project cost and working-capital estimates.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Prepare base and downside sales scenarios.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Draft a one-page proposal and 60-second pitch.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>Verify one relevant scheme from an official source.</label></div>
+  </div>
+
+  <div class="daynav"><button class="btn" onclick="showPage('opportunities')">← Day 3</button><button class="btn primary" onclick="showPage('day5')">Day 5 →</button></div>
+</section>
+
+<!-- DAY 5 -->
+<section class="page" id="day5">
+  <h2>Day 5 — Market research, SWOT and the right business idea</h2>
+  <p class="muted">Goal: choose a business that fits your customers, geography, skills and affordable investment.</p>
+
+  <div class="card">
+    <h3>Lesson 1: Conduct a useful market survey</h3>
+    <p>Interview real buyers rather than relying only on friends and family.</p>
+    <ol>
+      <li>Define one target group, such as 15 hotels or 20 local households.</li>
+      <li>Ask what they currently buy, how often and from whom.</li>
+      <li>Record pack sizes, prices, quality problems and buying criteria.</li>
+      <li>Ask what documents, delivery schedule and payment terms they require.</li>
+      <li>Offer a lawful, safe product trial and measure paid conversion.</li>
+    </ol>
+    <h4>Suggested interview questions</h4>
+    <ul>
+      <li>Which product do you currently use or sell?</li>
+      <li>What pack size and price move fastest?</li>
+      <li>What problem do you experience with existing suppliers?</li>
+      <li>What quantity do you purchase weekly or monthly?</li>
+      <li>Would you consider a paid trial? What would you need first?</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 2: SWOT analysis</h3>
+    <div class="grid2">
+      <div class="tile"><h4>Strengths</h4><p>Internal advantages: skills, sourcing, network, location.</p><textarea id="swotS" rows="3" placeholder="My strengths..."></textarea></div>
+      <div class="tile"><h4>Weaknesses</h4><p>Internal limitations: capital, technical skills, distribution.</p><textarea id="swotW" rows="3" placeholder="My weaknesses..."></textarea></div>
+      <div class="tile"><h4>Opportunities</h4><p>External openings: buyer gaps, tourism, local supply.</p><textarea id="swotO" rows="3" placeholder="My opportunities..."></textarea></div>
+      <div class="tile"><h4>Threats</h4><p>External risks: seasonality, weather, competitors, regulation.</p><textarea id="swotT" rows="3" placeholder="My threats..."></textarea></div>
+    </div>
+    <p>Turn each weakness and threat into an action. For example, if fruit supply is seasonal, identify alternative suppliers or another product for the off-season.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lesson 3: Score your business idea</h3>
+    <p>Rate each factor from 1 (poor) to 5 (excellent), based on evidence.</p>
+    <div class="grid2">
+      <div class="field"><label>Verified customer demand</label><select id="s1"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+      <div class="field"><label>Potential contribution margin</label><select id="s2"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+      <div class="field"><label>Reliable raw materials</label><select id="s3"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+      <div class="field"><label>Founder skill and network fit</label><select id="s4"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+      <div class="field"><label>Affordable investment</label><select id="s5"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+      <div class="field"><label>Manageable compliance and risk</label><select id="s6"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+    </div>
+    <button class="btn primary" onclick="scoreIdea()">Calculate score</button>
+    <div class="result" id="scoreResult">Your score will appear here.</div>
+    <p class="small">The score is a decision aid, not a guarantee. A weak demand score should not be compensated for by an attractive packaging score.</p>
+  </div>
+
+  <div class="case">
+    <strong>LIVE-STYLE CASE 4: The small pilot</strong>
+    <p>Instead of investing in a complete factory, a founder validates a product through an appropriately licensed contract processor, where suitable. The founder obtains buyer feedback, records paid orders, calculates actual unit cost and checks repeat purchases before expanding.</p>
+    <p>Success signals include paid demand, repeat orders, safe and consistent production, reliable supply and positive contribution after channel costs.</p>
+  </div>
+
+  <div class="card">
+    <h3>Your 90-day roadmap</h3>
+    <div class="table-scroll"><table>
+      <tr><th>Period</th><th>Actions</th><th>Evidence</th></tr>
+      <tr><td>Days 1–15</td><td>Survey buyers, visit competitors, map suppliers.</td><td>Survey sheet, price map, supplier list.</td></tr>
+      <tr><td>Days 16–30</td><td>Shortlist ideas, get quotations, seek technical guidance.</td><td>Cost model, compliance checklist.</td></tr>
+      <tr><td>Days 31–45</td><td>Select one idea, validate pricing and draft the DPR.</td><td>One-page business case and project report.</td></tr>
+      <tr><td>Days 46–60</td><td>Speak with the bank, DIC and relevant scheme office.</td><td>Written guidance, financing options, buyer pipeline.</td></tr>
+      <tr><td>Days 61–90</td><td>After required approvals, conduct a controlled pilot.</td><td>Actual cost, sales report and go/no-go decision.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h3>Final readiness checklist</h3>
+    <div class="task"><input type="checkbox" class="done"><label>I have interviewed at least 15 target buyers.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I know my selling price, variable cost and break-even.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I have identified the food-safety and licensing requirements to verify.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I have a supplier plan and an off-season strategy.</label></div>
+    <div class="task"><input type="checkbox" class="done"><label>I have a fallback plan if sales or finance are below expectations.</label></div>
+  </div>
+
+  <div class="daynav"><button class="btn" onclick="showPage('day4')">← Day 4</button><button class="btn primary" onclick="showPage('planner')">Build my plan →</button></div>
+</section>
+
+<!-- BUSINESS PLANNER -->
+<section class="page" id="planner">
+  <h2>My personal business planner</h2>
+  <p class="muted">Turn your learning into a practical working document. Unknowns are research tasks, not reasons to guess.</p>
+  <div class="card">
+    <h3>Business concept</h3>
+    <div class="grid2">
+      <div class="field"><label>Business / brand name</label><input id="pName" placeholder="Working name"></div>
+      <div class="field"><label>Proposed district / area</label><input id="pLocation" placeholder="District or town"></div>
+      <div class="field"><label>Product / service</label><input id="pProduct" placeholder="What will you sell?"></div>
+      <div class="field"><label>Target customer</label><input id="pCustomer" placeholder="Who pays?"></div>
+      <div class="field"><label>Maximum affordable investment (₹)</label><input id="pBudget" type="number" placeholder="Your safe investment limit"></div>
+      <div class="field"><label>Sales channel</label><select id="pChannel"><option>Retail</option><option>Hotels / restaurants</option><option>Tourist outlets</option><option>Online / direct</option><option>Wholesale / institutions</option><option>Contract manufacturing</option></select></div>
+    </div>
+    <div class="field"><label>Customer problem and solution</label><textarea id="pProblem" rows="3" placeholder="What problem will you solve, and why will customers choose you?"></textarea></div>
+    <div class="field"><label>Evidence already collected</label><textarea id="pEvidence" rows="3" placeholder="Interviews, buyer interest, prices, supplier details..."></textarea></div>
+    <div class="field"><label>Biggest unknowns and risks</label><textarea id="pRisks" rows="3" placeholder="What must be verified before investing?"></textarea></div>
+  </div>
+  <div class="card">
+    <h3>My immediate action plan</h3>
+    <div class="field"><label>First customer-research action</label><input id="pFirst" placeholder="Example: interview five hotel buyers"></div>
+    <div class="field"><label>Target date</label><input id="pDate" type="date"></div>
+    <div class="field"><label>Expert / institution to contact</label><input id="pContact" placeholder="DIC, bank, food technologist..."></div>
+    <div class="field"><label>First measurable milestone</label><input id="pMilestone" placeholder="Example: obtain three paid trial orders"></div>
+    <button class="btn primary" onclick="exportPlan()">Export my plan (.txt)</button>
+    <button class="btn" onclick="window.print()">Print / Save PDF</button>
+    <div class="callout" style="margin-top:15px">
+      Your information is processed locally in this page. Export your plan before closing it.
+    </div>
+  </div>
+  <div class="daynav"><button class="btn" onclick="showPage('day5')">← Day 5</button><button class="btn primary" onclick="showPage('resources')">Official resources →</button></div>
+</section>
+
+<!-- RESOURCES -->
+<section class="page" id="resources">
+  <h2>Official resources and entrepreneur glossary</h2>
+  <div class="card">
+    <h3>Essential websites</h3>
+    <ul>
+      <li><a href="https://foscos.fssai.gov.in/" target="_blank" rel="noopener">FoSCoS</a> — food business registration and licensing.</li>
+      <li><a href="https://www.fssai.gov.in/" target="_blank" rel="noopener">FSSAI</a> — food safety rules and guidance.</li>
+      <li><a href="https://mofpi.gov.in/" target="_blank" rel="noopener">MoFPI</a> — food processing policy and scheme notices.</li>
+      <li><a href="https://pmfme.mofpi.gov.in/" target="_blank" rel="noopener">PMFME</a> — check current programme status and eligibility.</li>
+      <li><a href="https://udyamregistration.gov.in/" target="_blank" rel="noopener">Udyam</a> — official MSME registration.</li>
+      <li><a href="https://www.startupindia.gov.in/" target="_blank" rel="noopener">Startup India</a> — startup recognition and support information.</li>
+      <li><a href="https://www.nabard.org/" target="_blank" rel="noopener">NABARD</a> — rural and agricultural finance information.</li>
+      <li><a href="https://www.cgtmse.in/" target="_blank" rel="noopener">CGTMSE</a> — credit guarantee information.</li>
+      <li><a href="https://himachal.nic.in/" target="_blank" rel="noopener">Himachal Pradesh Government</a> — state departments and policies.</li>
+      <li><a href="https://emerginghimachal.hp.gov.in/" target="_blank" rel="noopener">Invest Himachal</a> — investor facilitation and state information.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Entrepreneur glossary</h3>
+    <p><strong>DPR:</strong> Detailed Project Report describing the business, technical setup, market and finances.</p>
+    <p><strong>Contribution per unit:</strong> Net sales per unit minus variable cost per unit.</p>
+    <p><strong>Break-even:</strong> Sales volume at which contribution covers fixed costs in the simplified model.</p>
+    <p><strong>Working capital:</strong> Cash needed to operate while inventory and unpaid invoices tie up funds.</p>
+    <p><strong>ODOP:</strong> One District One Product; check the current applicable district product list and scheme rules.</p>
+    <p><strong>FPO:</strong> Farmer Producer Organisation, potentially useful for aggregating agricultural supply.</p>
+    <p><strong>SKU:</strong> A distinct product or pack variant tracked separately.</p>
+    <p><strong>DSO:</strong> Days Sales Outstanding, an indicator of how long credit sales take to collect.</p>
+  </div>
+  <div class="card">
+    <h3>Your entrepreneur commitment</h3>
+    <p>I will validate demand before major investment, protect customer safety, maintain honest accounts, verify current rules and make decisions using evidence rather than promises.</p>
+    <button class="btn primary" onclick="showPage('overview')">Return to programme ↗</button>
+    <button class="btn" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <strong>Food Entrepreneur Academy · Himachal Pradesh</strong>
+  <p>Educational planning material only. This programme does not guarantee business success, finance or subsidy approval. Seek qualified technical, food-safety, legal and financial advice before committing capital.</p>
+</footer>
+
+<script>
+const pages=['overview','day1','day2','opportunities','day4','day5','planner','resources'];
+let pageHistory=['overview'];
+
+function showPage(id,record=true){
+  if(!pages.includes(id))return;
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  if(record && pageHistory[pageHistory.length-1]!==id)pageHistory.push(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='opportunities')filterBusiness();
+}
+function backPage(){
+  if(pageHistory.length>1){
+    pageHistory.pop();
+    showPage(pageHistory[pageHistory.length-1],false);
+  }else showPage('overview',false);
+}
+function quiz(name,correct,feedbackId){
+  const selected=document.querySelector('input[name="'+name+'"]:checked');
+  const out=document.getElementById(feedbackId);
+  if(!selected){out.textContent='Please select an answer first.';return;}
+  out.textContent=selected.value===correct
+    ?'Correct! You can continue.'
+    :'Not quite. Review the lesson and try again.';
+  out.style.color=selected.value===correct?'#267052':'#a63d32';
+}
+document.addEventListener('change',e=>{
+  if(e.target.classList.contains('done'))updateProgress();
+});
+function updateProgress(){
+  const all=[...document.querySelectorAll('.done')];
+  const checked=all.filter(x=>x.checked).length;
+  const pct=all.length?Math.round(checked/all.length*100):0;
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('progressText').textContent=pct+'% checklist complete ('+checked+'/'+all.length+')';
+}
+
+const ideas=[
+['Apple grading, sorting and packing','Fruit & vegetables','Medium','Grade and pack fruit for wholesalers, retailers or direct buyers.','Supply agreements, grades, packing costs, seasonal cash flow.','Growers, wholesalers, retailers.'],
+['Apple juice and fruit beverages','Fruit & vegetables','Medium–High','Process fruit into a beverage through a suitable compliant setup.','Validated process, yield, testing, packaging and distribution.','Retail, hotels, cafés.'],
+['Apple jam and fruit preserves','Fruit & vegetables','Low–Medium','Develop a differentiated fruit spread in suitable packs.','Recipe standardisation, process validation and shelf life.','Retail, gift shops, direct sales.'],
+['Dehydrated apple slices','Fruit & vegetables','Medium','Dry suitable fruit for snacks or food ingredients.','Yield, energy, moisture, packaging and buyer demand.','Snack shops, online, hotels.'],
+['Fruit pulp and puree supply','Fruit & vegetables','High','Supply standardised pulp to food-service or manufacturing buyers.','Processing system, testing, storage and working capital.','Bakeries, restaurants, manufacturers.'],
+['Fruit vinegar and fermented products','Fruit & vegetables','Low–Medium','Explore fermented products with technical expertise.','Validated process, acidity, hygiene and permitted claims.','Specialty retail and food service.'],
+['Pickles and chutneys','Packaged foods','Low–Medium','Build a regional condiment range.','Recipe consistency, acidity, hygiene and packaging.','Retailers, restaurants, gift stores.'],
+['Siddu or regional food mixes','Packaged foods','Low–Medium','Develop a dry mix or frozen format for a traditional food.','Recipe trials, cooking directions, allergens and safety.','Households, homestays, cafés.'],
+['Dried mushrooms','Fruit & vegetables','Low–Medium','Dry suitable mushrooms for ingredient or retail markets.','Safe identification, sourcing, drying and moisture control.','Restaurants, specialty shops.'],
+['Mushroom cultivation','Farm & ingredients','Medium','Produce fresh mushrooms for local food-service buyers.','Training, contamination prevention and fast distribution.','Hotels, retailers, households.'],
+['Herb drying and blends','Farm & ingredients','Low–Medium','Dry and blend suitable culinary herbs.','Correct identification, quality, moisture and claims.','Retail, cafés, food makers.'],
+['Local grain flour and mixes','Farm & ingredients','Low–Medium','Mill and pack grains or recipe mixes.','Grain supply, milling yield, storage and allergen control.','Households, hotels, shops.'],
+['Buckwheat or millet snacks','Packaged foods','Low–Medium','Create roasted or baked snacks using suitable grains.','Recipe, texture, oil quality and repeat demand.','Retail, tourist shops, cafés.'],
+['Nuts, seeds and trail mixes','Packaged foods','Low–Medium','Pack portion-controlled snack mixes.','Allergens, rancidity, pack barrier and supplier quality.','Tourism, online, cafés.'],
+['Popcorn and savoury snacks','Packaged foods','Low–Medium','Build a focused snack range with proven flavours.','Sealing, oil/flavour consistency, shelf life and margins.','Retail, events, cafés.'],
+['Bakery, cookies and rusks','Packaged foods','Medium','Supply fresh or packaged bakery items.','Hygiene, allergens, production schedule and returns.','Retail, hotels, institutions.'],
+['Ready-to-cook regional mixes','Packaged foods','Low–Medium','Make dry mixes with clear preparation directions.','Ingredient safety, allergens, moisture and recipe trials.','Households, online, gift shops.'],
+['Local-ingredient noodles or pasta','Packaged foods','Medium','Explore a distinctive shelf-stable grain product.','Formulation, drying, equipment and competition.','Retail and institutional buyers.'],
+['Paneer, yoghurt or ghee','Dairy & beverages','Medium–High','Supply dairy products where sourcing and cold chain are feasible.','Milk quality, refrigeration, licensing and short shelf life.','Sweet shops, hotels, households.'],
+['Flavoured milk or cultured drinks','Dairy & beverages','Medium–High','Develop beverages with qualified technical support.','Validated process, temperature control and distribution.','Retail, cafés, institutions.'],
+['Herbal infusions and tea blends','Dairy & beverages','Low–Medium','Blend permitted food-grade herbs or tea ingredients.','Correct identity, contamination and claim verification.','Hotels, gift shops, online.'],
+['Fruit squash or syrup','Dairy & beverages','Medium','Develop a concentrated fruit beverage.','Validated formulation, acidity, packaging and labels.','Retail, cafés, hotels.'],
+['Honey aggregation and packing','Farm & ingredients','Low–Medium','Source traceable honey and pack with quality controls.','Authenticity testing, supplier traceability and claims.','Retail, gifting, online.'],
+['Spice grinding and private label','Farm & ingredients','Medium','Grind, blend or pack spices for retail or other brands.','Adulteration control, sanitation and supplier quality.','Retail, restaurants, brands.'],
+['Pulses cleaning and packing','Farm & ingredients','Medium–High','Aggregate, grade and pack pulses or grains.','Volume, storage, commodity-price risk and credit.','Wholesalers, institutions, retailers.'],
+['Ready-to-eat local meals','Packaged foods','Medium','Produce meals or snacks for direct sale or food service.','Hygiene, temperature control, delivery and waste.','Residents, tourists, offices.'],
+['Catering and institutional meals','Services & infrastructure','Medium','Serve events or institutions with reliable food operations.','Capacity, tender rules, safe transport and payment cycle.','Institutions, events, hotels.'],
+['Contract manufacturing / private label','Services & infrastructure','Low–Medium','Build a brand while a qualified processor manufactures.','Quality agreement, traceability, minimum orders and margins.','Retail, online, gifting.'],
+['Food branding and catalogue services','Services & infrastructure','Low','Help small food makers with catalogues, product photos and coordination.','Accurate claims, skill, customer acquisition and scope.','Food startups, cafés, producers.'],
+['Shared processing or rental kitchen','Services & infrastructure','High','Provide shared equipment or compliant kitchen capacity.','Premises approvals, cleaning, scheduling and demand.','Micro-enterprises, caterers.'],
+['Cold storage or reefer logistics','Services & infrastructure','High','Offer temperature-controlled storage or delivery.','Utilisation, power backup, maintenance and capital cost.','Growers, processors, wholesalers.'],
+['Fruit and vegetable aggregation','Tourism & distribution','Medium','Connect growers with food-service and retail buyers.','Quality rejection, wastage, delivery density and credit.','Hotels, retailers, processors.'],
+['Tourist gift boxes and hampers','Tourism & distribution','Low–Medium','Curate local foods into travel-friendly gift sets.','Supplier consistency, pack cost and off-season demand.','Tourist shops, hotels, corporate gifting.'],
+['Food tourism and tasting experiences','Tourism & distribution','Low–Medium','Offer food experiences paired with local products.','Permissions, safety, booking demand and seasonality.','Tourists, groups, hotels.']
+];
+
+let chosenIdeas=[];
+function filterBusiness(){
+  const q=(document.getElementById('searchBusiness').value||'').toLowerCase();
+  const cat=document.getElementById('categoryBusiness').value;
+  const filtered=ideas.filter(x=>(cat==='all'||x[1]===cat)&&x.join(' ').toLowerCase().includes(q));
+  const root=document.getElementById('businessList');
+  root.innerHTML='';
+  filtered.forEach(x=>{
+    const div=document.createElement('article');
+    div.className='business';
+    const title=document.createElement('h4');title.textContent=x[0];div.appendChild(title);
+    const meta=document.createElement('div');meta.className='meta';meta.textContent=x[1]+' · Investment: '+x[2];div.appendChild(meta);
+    [['Model',x[3]],['Validate',x[4]],['Possible buyers',x[5]]].forEach(pair=>{
+      const p=document.createElement('p');p.innerHTML='<strong>'+pair[0]+':</strong> ';p.appendChild(document.createTextNode(pair[1]));div.appendChild(p);
+    });
+    const label=document.createElement('label');label.style.display='block';label.style.marginTop='10px';
+    const cb=document.createElement('input');cb.type='checkbox';cb.checked=chosenIdeas.includes(x[0]);
+    cb.addEventListener('change',()=>{
+      if(cb.checked){
+        if(chosenIdeas.length>=3){cb.checked=false;alert('Choose up to three ideas.');return;}
+        chosenIdeas.push(x[0]);
+      }else chosenIdeas=chosenIdeas.filter(n=>n!==x[0]);
+      updateShortlist();
+    });
+    label.appendChild(cb);label.appendChild(document.createTextNode(' Add to shortlist'));div.appendChild(label);
+    root.appendChild(div);
+  });
+}
+function updateShortlist(){
+  const root=document.getElementById('shortlist');
+  root.innerHTML='';
+  if(!chosenIdeas.length){root.textContent='No ideas selected yet.';return;}
+  chosenIdeas.forEach((x,i)=>{const p=document.createElement('p');p.textContent=(i+1)+'. '+x;root.appendChild(p);});
+}
+function calculate(){
+  const num=id=>Math.max(0,Number(document.getElementById(id).value)||0);
+  const project=num('projectCost'),own=num('ownContribution');
+  const units=num('unitsSold'),price=num('unitPrice');
+  const cost=num('unitCost'),fixed=num('fixedCost');
+  const contribution=price-cost;
+  const sales=units*price;
+  const totalContribution=units*contribution;
+  const surplus=totalContribution-fixed;
+  const breakEven=contribution>0?Math.ceil(fixed/contribution):null;
+  const gap=Math.max(0,project-own);
+  document.getElementById('financeResult').innerHTML=
+    '<strong>Monthly draft estimate</strong>'+
+    '<p>Net sales: ₹'+Math.round(sales).toLocaleString('en-IN')+'</p>'+
+    '<p>Contribution per unit: ₹'+contribution.toLocaleString('en-IN')+'</p>'+
+    '<p>Total contribution: ₹'+Math.round(totalContribution).toLocaleString('en-IN')+'</p>'+
+    '<p>Operating surplus / shortfall before excluded costs: ₹'+Math.round(surplus).toLocaleString('en-IN')+'</p>'+
+    '<p>Break-even units per month: '+(breakEven===null?'Not reached':breakEven.toLocaleString('en-IN'))+'</p>'+
+    '<p>Funding gap before other sources: ₹'+Math.round(gap).toLocaleString('en-IN')+'</p>'+
+    '<p>'+(contribution<=0?'Warning: variable cost is at or above your selling price.':surplus<0?'At this sales volume, contribution does not cover fixed costs.':'Stress-test your assumptions before making an investment decision.')+'</p>';
+}
+function scoreIdea(){
+  const total=['s1','s2','s3','s4','s5','s6'].reduce((sum,id)=>sum+Number(document.getElementById(id).value),0);
+  let message=total>=25?'Promising on this scorecard. Verify demand and risks before investing.':
+    total>=19?'Possible candidate. Test the weaker factors first.':
+    'High uncertainty. Research further or compare another idea.';
+  document.getElementById('scoreResult').innerHTML='<strong>Score: '+total+' / 30</strong><p>'+message+'</p>';
+}
+function exportPlan(){
+  const fields=[
+    ['Business name','pName'],['Location','pLocation'],['Product','pProduct'],
+    ['Customer','pCustomer'],['Investment limit','pBudget'],['Sales channel','pChannel'],
+    ['Problem and solution','pProblem'],['Evidence','pEvidence'],['Risks','pRisks'],
+    ['First action','pFirst'],['Target date','pDate'],['Contact','pContact'],
+    ['First milestone','pMilestone'],['SWOT Strengths','swotS'],
+    ['SWOT Weaknesses','swotW'],['SWOT Opportunities','swotO'],['SWOT Threats','swotT']
+  ];
+  let text='FOOD ENTREPRENEUR ACADEMY — BUSINESS PLAN\n\n';
+  fields.forEach(([label,id])=>{
+    const el=document.getElementById(id);
+    if(el&&el.value)text+=label+':\n'+el.value+'\n\n';
+  });
+  text+='Remember to verify official licensing, scheme and financial information.\n';
+  const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='my-food-business-plan.txt';a.click();
+  URL.revokeObjectURL(url);
+}
+document.addEventListener('keydown',e=>{if(e.altKey&&e.key==='ArrowLeft')backPage()});
+filterBusiness();
+updateProgress();
+</script>
+</body>
+</html>
